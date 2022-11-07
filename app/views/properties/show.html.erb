@@ -1,0 +1,39 @@
+
+<p>
+  <strong>Owner:</strong>
+  <%= @property.owner %>
+</p>
+ 
+<p>
+  <strong>Address:</strong>
+  <%= @property.address %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @property.size %>
+</p>
+
+<p>
+  <strong>Floors:</strong>
+  <%= @property.floors %>
+</p>
+
+<p>
+  <strong>Built Year:</strong>
+  <%= @property.year_built %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @property.price %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @property.property_type %>
+</p>
+
+<%= image_tag(@property.image, :size => "260x180", :crop => :fill)%><br>
+<%= link_to 'Edit', edit_property_path(@property) %> 
+<%= link_to 'Back', properties_path %>
