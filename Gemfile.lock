@@ -147,6 +147,8 @@ GEM
       nio4r (~> 2.0)
     puma (4.3.12-java)
       nio4r (~> 2.0)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     racc (1.6.0-java)
     rack (2.2.4)
@@ -290,6 +292,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.2)
   puma (~> 4.1)
+  pundit
   rails (~> 6.0.6)
   rubocop
   sass-rails (>= 6)

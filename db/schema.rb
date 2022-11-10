@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_221_107_111_138) do
+ActiveRecord::Schema.define(version: 20_221_109_130_018) do
   create_table 'active_storage_attachments', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20_221_107_111_138) do
     t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
   end
 
+  create_table 'attachments', force: :cascade do |t|
+    t.string 'name'
+    t.string 'attachable_type', null: false
+    t.integer 'attachable_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[attachable_type attachable_id], name: 'index_attachments_on_attachable_type_and_attachable_id'
+  end
+
   create_table 'categories', force: :cascade do |t|
     t.string 'name'
     t.datetime 'created_at', precision: 6, null: false
@@ -42,7 +51,6 @@ ActiveRecord::Schema.define(version: 20_221_107_111_138) do
   end
 
   create_table 'properties', force: :cascade do |t|
-    t.integer 'user_id'
     t.string 'address'
     t.integer 'size'
     t.integer 'price'
@@ -52,9 +60,19 @@ ActiveRecord::Schema.define(version: 20_221_107_111_138) do
     t.string 'image'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.string 'status'
     t.string 'category'
-    t.string 'property_type'
+    t.integer 'property_type'
+    t.integer 'user_id', null: false
+    t.index ['user_id'], name: 'index_properties_on_user_id'
+  end
+
+  create_table 'property_categories', force: :cascade do |t|
+    t.integer 'property_id'
+    t.integer 'category_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['category_id'], name: 'index_property_categories_on_category_id'
+    t.index ['property_id'], name: 'index_property_categories_on_property_id'
   end
 
   create_table 'queries', force: :cascade do |t|
@@ -80,4 +98,7 @@ ActiveRecord::Schema.define(version: 20_221_107_111_138) do
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'properties', 'users'
+  add_foreign_key 'property_categories', 'categories'
+  add_foreign_key 'property_categories', 'properties'
 end
