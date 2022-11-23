@@ -1,0 +1,9 @@
+<% if @search_property&.present? %>
+  <ul>
+    <% @search_property&.each_with_index do |property, index| %>
+      <li>
+        <%= link_to property.owner, property_path(property)%>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

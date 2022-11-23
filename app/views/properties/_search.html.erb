@@ -1,0 +1,10 @@
+<div class="row float-right"><br>
+  <div class="col-md-3 bg-light text-right id=search-form">
+    <%= form_tag(properties_path, method: "get", remote: true) do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Enter Property Owner name", class: "form-control", autocomplete: "off" %>
+    <% end %>
+    <div id="index">
+      <%= render 'properties/result' %>
+    </div>
+  </div>
+</div>

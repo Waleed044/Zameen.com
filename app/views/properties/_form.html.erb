@@ -1,44 +1,32 @@
 <%= form_with(model: property, local: true) do |form| %>
-  <% if property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
-
-      <ul>
-        <% property.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="form-group">
-    <%= form.label 'Owner' %><br/>
+    <%= form.label 'Owner' %><br>
     <%= form.text_field :owner, autofocus: true, autocomplete: "name", :class=> "form-control"%>
   </div>
 
   <div class="form-group">
-    <%= form.label 'Address' %><br/>
+    <%= form.label 'Address' %><br>
     <%= form.text_field :address, autofocus: true, autocomplete: "name", :class=> "form-control"%>
   </div>
 
   <div class="form-group">
-    <%= form.label 'Price' %><br/>
+    <%= form.label 'Price' %><br>
     <%= form.text_field :price, autofocus: true, autocomplete: "name", :class=> "form-control"%>
   </div>
 
   <div class="form-group">
-    <%= form.label 'Size' %><br/>
+    <%= form.label 'Size' %><br>
     <%= form.text_field :size, autofocus: true, autocomplete: "name", :class=> "form-control"%>
   </div>
 
   <div class="form-group">
-    <%= form.label 'Floors' %><br/>
+    <%= form.label 'Floors' %><br>
     <%= form.text_field :floors, autofocus: true, autocomplete: "name", :class=> "form-control"%>
   </div>
 
   <div class="form-group">
     <%= form.label 'Built Year'%><br>
-    <%= form.text_field :year_built, autofocus: true, autocomplete: "name", :class=> "form-control"%>
+    <%= form.text_field :year_built, autofocus: true, autocomplete: "name", :class=> "form-control" %>
   </div><br>
 
   <div class="form-group">

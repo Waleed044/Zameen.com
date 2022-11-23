@@ -3,9 +3,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_query
 
   include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def set_query
+    @query = Property.ransack(params[:q])
+  end
 
   private
 

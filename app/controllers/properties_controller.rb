@@ -8,8 +8,12 @@ class PropertiesController < ApplicationController
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
-    authorize @properties
+    @q = Property.ransack(params[:q])
+    @properties = @q.result.all
+    # debugger
+    # @properties = Property.all
+    # @search_property = Property.searched(params[:search]) if params[:search].present?
+    # authorize @properties
   end
 
   # GET /properties/1 or /properties/1.json
@@ -66,6 +70,13 @@ class PropertiesController < ApplicationController
       format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def self.search(search)
+    joins(:category).where(
+      ['categories.name like ? OR title LIKE ? OR description LIKE ?',
+       search, search, search]
+    )
   end
 
   private

@@ -1,3 +1,5 @@
+<%= link_to 'Back', properties_path, class: "btn btn-success" %><br>
+<%= image_tag(@property.image, :size => "400x250", crop: :fill)%>
 
 <p>
   <strong>Owner:</strong>
@@ -10,6 +12,7 @@
 </p>
 
 <p>
+  
   <strong>Size:</strong>
   <%= @property.size %>
 </p>
@@ -33,7 +36,7 @@
   <strong>Property Type:</strong>
   <%= @property.property_type %>
 </p>
-
-<%= image_tag(@property.image, :size => "260x180", :crop => :fill)%><br>
-<%= link_to 'Edit', edit_property_path(@property) %> 
-<%= link_to 'Back', properties_path %>
+<%# <%= render @property.queries %>
+<h4>Enter Your Query:</h4>
+<%# <%= render 'queries/form' %>
+<%# <h4> Queries </h4> %>

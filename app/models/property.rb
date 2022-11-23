@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Property < ApplicationRecord
   validates_presence_of :address, :owner, :price, :size, :floors
   # has_one_attached :category
@@ -13,4 +12,6 @@ class Property < ApplicationRecord
   # has_many_attached :image
   has_many :property_categories
   has_many :categories, through: :property_categories, dependent: :destroy
+  scope :searched, ->(owner) { where('owner LIKE ?', "%#{owner}%") }
+  has_many :queries
 end
