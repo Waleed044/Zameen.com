@@ -3,23 +3,17 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: %i[search new_search]
+  # skip_before_action :verify_authenticity_token, only: %i[search new_search]
   # before_action :authorize_user, except: %i[index show]
 
   # GET /properties or /properties.json
   def index
     @q = Property.ransack(params[:q])
     @properties = @q.result.all
-    # debugger
-    # @properties = Property.all
-    # @search_property = Property.searched(params[:search]) if params[:search].present?
-    # authorize @properties
   end
 
   # GET /properties/1 or /properties/1.json
-  def show
-    @property = Property.find(params[:id])
-  end
+  def show; end
 
   # GET /properties/new
   def new
@@ -27,9 +21,7 @@ class PropertiesController < ApplicationController
   end
 
   # GET /properties/1/edit
-  def edit
-    @property = Property.find(params[:id])
-  end
+  def edit; end
 
   # POST /properties or /properties.json
   def create
@@ -81,10 +73,7 @@ class PropertiesController < ApplicationController
 
   private
 
-  def authorize_user
-    #   property = @property || Property
-    #   authorize property
-  end
+  def authorize_user; end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_property

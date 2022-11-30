@@ -12,7 +12,6 @@
 </p>
 
 <p>
-  
   <strong>Size:</strong>
   <%= @property.size %>
 </p>
@@ -36,7 +35,16 @@
   <strong>Property Type:</strong>
   <%= @property.property_type %>
 </p>
-<%# <%= render @property.queries %>
-<h4>Enter Your Query:</h4>
-<%# <%= render 'queries/form' %>
-<%# <h4> Queries </h4> %>
+
+<p>
+  <h4> Queries</h4>
+  <% @property.queries.each do |query| %>
+  <strong>Commenter:</strong>
+  <%= query.subject %>
+  <strong>Query:</strong>
+  <%= query.message %> 
+  <%end%>
+</p>
+
+<h3>Ask Your Query:</h3>
+<%= render 'queries/form'%>

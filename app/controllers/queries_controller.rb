@@ -3,13 +3,15 @@
 class QueriesController < ApplicationController
   before_action :set_query, only: %i[show edit update destroy]
 
-  # GET /queries or /queries.json
+  # # GET /queries or /queries.json
   def index
     @queries = Query.all
   end
 
   # GET /queries/1 or /queries/1.json
-  def show; end
+  def show
+    @query = Query.find(params[:id])
+  end
 
   # GET /queries/new
   def new
@@ -21,17 +23,20 @@ class QueriesController < ApplicationController
 
   # POST /queries or /queries.json
   def create
-    @query = Query.new(query_params)
+    @property = Property.find(params[:property_id])
+    @query = @property.queries.create(query_params)
+    redirect_to property_path(@property)
+    # @query = Query.new(query_params)
 
-    respond_to do |format|
-      if @query.save
-        format.html { redirect_to query_url(@query), notice: 'Query was successfully created.' }
-        format.json { render :show, status: :created, location: @query }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @query.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @query.save
+    #     format.html { redirect_to query_url(@query), notice: 'Query was successfully created.' }
+    #     format.json { render :show, status: :created, location: @query }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @query.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /queries/1 or /queries/1.json
@@ -49,23 +54,25 @@ class QueriesController < ApplicationController
 
   # DELETE /queries/1 or /queries/1.json
   def destroy
+    @property = Property.find(params[:property_id])
+    @query = @property.queries.find(params[:id])
     @query.destroy
-
-    respond_to do |format|
-      format.html { redirect_to queries_url, notice: 'Query was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to properties_path(@property)
   end
 
   private
+
+  def query_params
+    params.require(:query).permit(:subject, :message)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_query
     @query = Query.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
-  def query_params
-    params.fetch(:query, {})
-  end
+  # # Only allow a list of trusted parameters through.
+  # def query_params
+  #   params.fetch(:query, {})
+  # end
 end

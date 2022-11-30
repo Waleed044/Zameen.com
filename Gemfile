@@ -54,9 +54,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'bootstrap', '~> 5.2.2'
-gem 'cancancan'
+# gem 'cancancan'
+gem 'cancancan', '~> 3.4'
 gem 'devise'
 gem 'jquery-rails'
+gem 'letter_opener', group: :development
 gem 'pundit'
 gem 'ransack'
 gem 'rubocop', require: false

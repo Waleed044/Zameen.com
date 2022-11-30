@@ -1,12 +1,12 @@
-<%= form_with(model: [@property, @property.query_ids ], local: true) do |form| %>
+<%= form_with(model: [@property,  @property.queries.build ], local: true) do |form| %>
   <p>
-    <%= form.label :Comment %><br>
-    <%= form.text_field :commenter %>
+    <%= form.label :Name %><br>
+    <%= form.text_field :subject %>
   </p>
 
   <p>
-    <%= form.label :review %><br>
-    <%= form.text_area :body %>
+    <%= form.label :query %><br>
+    <%= form.text_area :message %>
   </p>
 
   <div class="actions">

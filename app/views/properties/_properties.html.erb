@@ -14,7 +14,6 @@
     </tr>
   </thead>
   <tbody>
-
        <% @properties.each_with_index do | property, index | %>
       <tr>
         <td><%= index + 1 %></td>
@@ -25,7 +24,7 @@
   <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Choose
-  </button>
+  </button>  
   <ul class="dropdown-menu">
     <li><%= link_to 'Show', property_path(property),class: "btn btn-outline-secondary" %></li>
     <li><%= link_to 'Edit', edit_property_path(property),class:"btn btn-outline-secondary" %></li>
@@ -59,7 +58,6 @@
             text-align: left;
             padding: 8px;
           }
-          
     tr:nth-child(even) {
             background-color: Lightgrey;
           }
